@@ -1,3 +1,0 @@
-daw2 es la base de datos, insertar en C:\xampp\mysql\data\
-
-PrimerProyectoPHP es el proyecto php en si, insertar en C:\xampp\htdocs\
