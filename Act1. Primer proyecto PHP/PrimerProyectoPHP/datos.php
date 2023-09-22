@@ -3,7 +3,7 @@ $Color = $_GET['color'];
 $Dimensiones = $_GET['dimensiones'];
 $Tipo = $_GET['tipo'];
 
-echo "El mueble es de color ".$Color.", tiene una dimensiones de ".$Dimensiones." y es un/a ".$Tipo.".";
+echo "El mueble es de color ".$Color.", tiene una dimensiones de ".$Dimensiones." y es un/a ".$Tipo.".\n\n";
 
 $servidor="localhost";
 $usuario="root";
@@ -16,6 +16,7 @@ if(!$con){
     die("No se ha podido realizar la conexión_".mysqli_connect_error()."<br>");
 }else{
     mysqli_set_charset($con,"utf8");
+    
     echo "Se ha establecido correctamente la conexión a la base de datos";
 
     $sql="INSERT INTO `muebles`(`id`, `color`, `dimensiones`, `tipo`) 
@@ -26,7 +27,7 @@ if(!$con){
     if(!$consulta){
         die("No se ha podido realizar el insert");
     }else{
-        echo "El insert se ha realizado correctamente";
+        echo "\n\nEl insert se ha realizado correctamente";
     }
 ?>
 
