@@ -4,10 +4,7 @@ $Color = $_GET['color'];
 $Dimensiones = $_GET['dimensiones'];
 $Tipo = $_GET['tipo'];
 //variables de los clientes
-$Dni = $_GET['color'];
-$Nombre_completo = " ";
-$Direccion = " ";
-$Email = " ";
+$Dni = $_GET['dni'];
 
 echo "El mueble es de color " . $Color . ", tiene una dimensiones de " . $Dimensiones . " y es un/a " . $Tipo . ".\n\n";
 
@@ -18,54 +15,6 @@ $bd = "daw2";
 
 $con = mysqli_connect($servidor, $usuario, $password, $bd);
 
-function crear($Dni, $Nombre_completo, $Direccion, $Email, $con)
-{
-    $sql = "INSERT INTO `clientes`(`dni`, `nombre_completo`, `direccion`, `email`) 
-VALUES ('$Dni','$Nombre_completo','$Direccion','$Email')";
-    $consulta = mysqli_query($con, $sql);
-
-    if (!$consulta) {
-        die("No se ha podido crear el cliente.");
-    } else {
-        echo "Se ha creado el cliente.";
-    }
-}
-function actualizar($Dni, $Nombre_completo, $Direccion, $Email, $con)
-{
-    $sql = "UPDATE clientes
-    SET nombre_completo = '$Nombre_completo', direccion = '$Direccion', email = '$Email'
-    WHERE dni = '$Dni';";
-    $consulta = mysqli_query($con, $sql);
-
-    if (!$consulta) {
-        die("No se ha podido actualizar el cliente.");
-    } else {
-        echo "Se ha actualizado el cliente.";
-    }
-}
-function mostrar($Dni, $con)
-{
-    $sql = "SELECT TABLE clientes WHERE dni = '$Dni'";
-    $consulta = mysqli_query($con, $sql);
-
-    if (!$consulta) {
-        die("No se ha podido realizar el insert");
-    } else {
-        echo "Mostrando cliente y muebles comprados";
-    }
-    return $consulta;
-}
-function eliminar($Dni, $con)
-{
-    $sql = "DELETE FROM clientes WHERE dni = '$Dni'";
-    $consulta = mysqli_query($con, $sql);
-
-    if (!$consulta) {
-        die("No se ha podido eliminar el cliente");
-    } else {
-        echo "Se ha eliminado el cliente.";
-    }
-}
 if (!$con) {
     die("No se ha podido realizar la conexión_" . mysqli_connect_error() . "<br>");
 } else {
@@ -113,6 +62,10 @@ if (!$con) {
             }
             ?>
         </table>
+        <br><br><br><br>
+        <a href="formulario1.html">
+            <button>Volver</button>
+        </a>
 
         </form>
     </body>
