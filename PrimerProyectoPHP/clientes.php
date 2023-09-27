@@ -1,22 +1,36 @@
 <?php
-if (isset($_POST['Guardar'])) {
-    echo "Yes, mail is set";    
-} else {    
-    echo "N0, mail is not set";
+//variables de usaurio
+if ($_GET['dni'] = NULL) {
+    $Dni = "";
+} else {
+    $Dni = $_GET['dni'];
 }
-
+//variables de conexion
 $servidor = "localhost";
 $usuario = "root";
 $password = "";
 $bd = "daw2";
 
 $con = mysqli_connect($servidor, $usuario, $password, $bd);
+if ($con) {
+    if (isset($_GET['crear'])) {
+        crear($Dni, $con);
+    } else if (isset($_GET['actualizar'])) {
+        actualizar($Dni, $con);
+    } else if (isset($_GET['mostrar'])) {
+        mostrar($Dni, $con);
+    } else if (isset($_GET['eliminar'])) {
+        eliminar($Dni, $con);
+    }
+} else {
+    // Si no, muestra un mensaje de error
+    echo 'No se ha conectado a la base de datos :<';
+}
 
 //funcion para crear un cliente se llama desde fuera?
-function crear($Dni, $Nombre_completo, $Direccion, $Email, $con)
+function crear($Dni, $con)
 {
     //variables de los clientes
-    $Dni = $_GET['dni'];
     $Nombre_completo = $_GET['nombre'];
     $Direccion = $_GET['direccion'];
     $Email = $_GET['email'];
@@ -31,8 +45,11 @@ VALUES ('$Dni','$Nombre_completo','$Direccion','$Email')";
     }
 }
 //funcion para cambiar la info de un cliente
-function actualizar($Dni, $Nombre_completo, $Direccion, $Email, $con)
+function actualizar($Dni, $con)
 {
+    $Nombre_completo = $_GET['nombre'];
+    $Direccion = $_GET['direccion'];
+    $Email = $_GET['email'];
     $sql = "UPDATE clientes
     SET nombre_completo = '$Nombre_completo', direccion = '$Direccion', email = '$Email'
     WHERE dni = '$Dni';";
@@ -40,6 +57,8 @@ function actualizar($Dni, $Nombre_completo, $Direccion, $Email, $con)
 
     if (!$consulta) {
         die("No se ha podido actualizar el cliente.");
+    } else {
+        echo "Cliente con DNI: " . $Dni . " actualizado.";
     }
 }
 //funcion para mostrar la info de un cliente
@@ -83,16 +102,11 @@ function eliminar($Dni, $con)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducir cliente nuevo</title>
+    <title>Resultado operacion</title>
 </head>
 
 <body>
-    <button onclick="location.href='formulario2.html'">crear</button><br>
-    <button onclick="location.href='clientes.php'">actualizar</button><br>
-    <button onclick="location.href='clientes.php'">mostrar</button><br>
-    <button onclick="location.href='clientes.php'">eliminar</button><br>
-    <br><br><br><br>
-    <a href="index.html">
+    <a href="formulario2.html">
         <button>Volver</button>
     </a>
 

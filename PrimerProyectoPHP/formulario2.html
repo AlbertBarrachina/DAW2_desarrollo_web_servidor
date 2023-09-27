@@ -9,20 +9,53 @@
 </head>
 
 <body>
-    <form action="clientes.php" method="get">
-        <label>DNI cliente:</label>
-        <input type="text" name="dni"><br><br>
-        <label>Nombre completo:</label>
-        <input type="text" name="nombre"><br><br>
-        <label>Direccion:</label>
-        <input type="text" name="direccion"><br><br>
-        <label>Correo electronico:</label>
-        <input type="text" name="email"><br><br>
-        <input type="submit" value="Guardar" id="Guardar">
+    <div>
+        <h1>CLIENTES!</h1>
+        <h2>Añadir/Cambiar clientes</h2>
+        <form action="clientes.php" method="get">
+            <label for="dni">DNI cliente:</label>
+            <input type="text" name="dni"><br><br>
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" name="nombre"><br><br>
+            <label for="direccion">Direccion:</label>
+            <input type="text" name="direccion"><br><br>
+            <label for="email">Correo electronico:</label>
+            <input type="text" name="email"><br><br>
+            <input type="submit" value="crear" name="crear"id="crear">
+            <input type="submit" value="Actualizar" id="actualizar">
+        </form>
+    </div>
+    <div>
+        <h2>Mostrar cliente</h2>
+        <form action="clientes.php" method="get">
+            <label for="dni">DNI:</label><br>
+            <input type="text" name="dni"><br><br>
+            <input type="submit" value="Mostrar cliente" name="mostrar">
+            <input type="submit" value="Mostrar todos" name="mostrarTodos">
+        </form>
+    </div>
+    <div>
+        <h2>Eliminar cliente</h2>
+        <form action="clientes.php" method="get">
+            <label for="dni">DNI:</label><br>
+            <input type="text" name="dni"><br><br>
+            <input type="submit" value="Eliminar cliente" name="eliminar">
+        </form>
+    </div>
+    <div>
+        <form action="clientes.php" method="get">
+            <label>DNI cliente:</label>
+            <input type="text" name="dni"><br><br>
+            <label>Nombre completo:</label>
+            <input type="text" name="nombre"><br><br>
+            <label>Direccion:</label>
+            <input type="text" name="direccion"><br><br>
+            <label>Correo electronico:</label>
+            <input type="text" name="email"><br><br>
+            <input type="submit" value="Guardar" id="Guardar">
 
-    </form>
-
-    <br><br><br>
+        </form>
+    </div>
 
 
     <br><br><br><br>
