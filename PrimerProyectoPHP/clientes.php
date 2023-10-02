@@ -1,10 +1,6 @@
 <?php
 //variables de usaurio
-if ($_GET['dni'] = NULL) {
-    $Dni = "";
-} else {
     $Dni = $_GET['dni'];
-}
 //variables de conexion
 $servidor = "localhost";
 $usuario = "root";
@@ -19,6 +15,8 @@ if ($con) {
         actualizar($Dni, $con);
     } else if (isset($_GET['mostrar'])) {
         mostrar($Dni, $con);
+    } else if (isset($_GET['mostrarTodos'])) {
+        mostrarTodo($con);
     } else if (isset($_GET['eliminar'])) {
         eliminar($Dni, $con);
     }
@@ -58,7 +56,7 @@ function actualizar($Dni, $con)
     if (!$consulta) {
         die("No se ha podido actualizar el cliente.");
     } else {
-        echo "Cliente con DNI: " . $Dni . " actualizado.";
+        echo "El cliente". $Dni ." ahora tiene nombre: ". $Nombre_completo ." con correo electronico ". $Email ." y reside en ". $Direccion;
     }
 }
 //funcion para mostrar la info de un cliente
@@ -72,11 +70,30 @@ function mostrar($Dni, $con)
     } else {
         while ($fila = $consulta->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $fila["dni"] . "</td>";
-            echo "<td>" . $fila["nombre_completo"] . "</td>";
-            echo "<td>" . $fila["direccion"] . "</td>";
-            echo "<td>" . $fila["email"] . "</td>";
+            echo "<td>DNI: " . $fila["dni"] . "</td>";
+            echo "<td>Nombre: " . $fila["nombre_completo"] . "</td>";
+            echo "<td>Direccion: " . $fila["direccion"] . "</td>";
+            echo "<td>Email: " . $fila["email"] . "</td>";
             echo "</tr>";
+        }
+    }
+}
+function mostrarTodo($con)
+{
+    $sql = "SELECT * FROM `clientes`";
+    $consulta = mysqli_query($con, $sql);
+
+    if (!$consulta) {
+        die("No se ha podido realizar el insert");
+    } else {
+        while ($fila = $consulta->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>DNI: " . $fila["dni"] . "</td>";
+            echo "<td>Nombre: " . $fila["nombre_completo"] . "</td>";
+            echo "<td>Direccion: " . $fila["direccion"] . "</td>";
+            echo "<td>Email: " . $fila["email"] . "</td>";
+            echo "</tr>";
+            echo "<br><br>";
         }
     }
 }
@@ -88,7 +105,7 @@ function eliminar($Dni, $con)
     if (!$consulta) {
         die("No se ha podido eliminar el cliente");
     } else {
-        echo "Se ha eliminado el cliente.";
+        echo "Se ha eliminado el cliente con DNI: ". $Dni .".";
     }
 }
 
@@ -106,6 +123,7 @@ function eliminar($Dni, $con)
 </head>
 
 <body>
+    <br><br><br>
     <a href="formulario2.html">
         <button>Volver</button>
     </a>

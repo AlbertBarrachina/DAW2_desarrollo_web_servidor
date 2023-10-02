@@ -6,7 +6,7 @@ $Tipo = $_GET['tipo'];
 //variables de los clientes
 $Dni = $_GET['dni'];
 
-echo "El mueble es de color " . $Color . ", tiene una dimensiones de " . $Dimensiones . " y es un/a " . $Tipo . ".\n\n";
+echo "El cliente con DNI: ". $Dni ." ha comprado el mueble es de color " . $Color . ", tiene una dimensiones de " . $Dimensiones . " y es un/a " . $Tipo . ".\n\n";
 
 $servidor = "localhost";
 $usuario = "root";
@@ -54,10 +54,10 @@ if (!$con) {
             $consulta = mysqli_query($con, $sql2);
             while ($fila = $consulta->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $fila["id"] . "</td>";
-                echo "<td>" . $fila["color"] . "</td>";
-                echo "<td>" . $fila["dimensiones"] . "</td>";
-                echo "<td>" . $fila["tipo"] . "</td>";
+                echo "<td>DNI: " . $fila["id"] . " .</td>";
+                echo "<td>Color: " . $fila["color"] . " .</td>";
+                echo "<td>Dimensiones: " . $fila["dimensiones"] . " .</td>";
+                echo "<td>Tipo: " . $fila["tipo"] . " .</td>";
                 echo "</tr>";
             }
             ?>
