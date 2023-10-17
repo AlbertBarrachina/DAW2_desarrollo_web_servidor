@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <form action="index.php" method="post">
+    <form action="/index.php" method="post">
         <h2>CREAR ALUMNO NUEVO</h2>
         <label for="nombre">Nombre:</label><br>
         <input type="text" name="nombre"><br>
@@ -36,8 +36,20 @@
             <option value="SMIX">SMIX</option>
         </select>
         <br><br>
-        <button type="submit">Guardar</button>
+        <button type="submit" name="guardarAlumno" value="guardarAlumno">Guardar</button>
     </form>
+
+    <h1>formulario de cursos</h1>
+    <form action="/index.php" method="post">
+        <h2>CREAR curso</h2>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" name="nombre"><br>
+        <label for="anno">Año:</label><br>
+        <input type="text" name="anno"><br>
+        <br><br>
+        <button type="submit" name="guardarCurso" value="guardarCurso">Guardar</button>
+    </form>
+        <button>Mostrar Cursos</button>
 </body>
 
 </html>

@@ -1,18 +1,47 @@
 <?php
-class personas_model{
+require_once('models/personas_model.php');
+require_once('persoanas_controller.php');
+class personas_controller
+{
     private $db;
     private $personas;
- 
-    public function __construct(){
-        $this->db=Conectar::conexion();
-        $this->personas=array();
+    private $modelo;
+    private $con;
+
+    public function __construct()
+    {
+        $this->modelo = new personas_model();
+        $this->con = Conectar::conexion();
+        $this->personas = array();
     }
-    public function get_personas(){
-        $consulta=$this->db->query("select * from `alumno`;");
-        while($filas=$consulta->fetch_assoc()){
-            $this->personas[]=$filas;
+
+    //guarda el alumno creado si no puede da error
+    public function guardarAlumno()
+    {
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $dni = $_POST['dni'];
+        $curso = $_POST['curso'];
+
+        $sql = 'INSERT INTO alumnos VALUES ("' . $nombre . '", "' . $apellidos . '", "' . $dni . '","' . $curso . '")';
+        $query = mysqli_query($this->con, $sql);
+
+        if ($query) {
+            $this->modelo->mostrarAlumnoGuardado();
+        } else {
+            echo 'Error';
+            $this->modelo->BotonVolver();
         }
-        return $this->personas;
+    }
+    //muestra todos los alumnos matriculados
+    public function mostrarAlumnos() {
+        $sql = 'SELECT * FROM alumnos';
+        $query = mysqli_query($this->con, $sql);
+        $this->modelo->mostrarAlumnos($query);
+    }
+    //muestra un boton para volver al formulario
+    public function botonVolver()
+    {
+        $this->modelo->botonVolver();
     }
 }
-?>
