@@ -1,5 +1,5 @@
 <?php
-class personas_controller
+class index_controller
 {
     private $con;
 
@@ -8,6 +8,6 @@ class personas_controller
         $this->con = Conectar::conexion();
     }
 
-    //guarda el alumno creado si no puede da error
+    //
     
 }
