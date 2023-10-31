@@ -90,7 +90,7 @@
             $Loged = true;
         }
     }
-    if ($Loged == true) {
+    if ($Loged == false) {
         echo '
         <div class="icono-perfil">
             <a href="perfil_view.php">

@@ -80,7 +80,7 @@
         REGISTRO
     </div>
     <div class="formulario">
-        <form action="">
+        <form method="POST">
             <label for="nick">Nick</label>
             <input type="text" name="nick">
             <label for="email">Correo electronico</label>
@@ -103,3 +103,15 @@
 </body>
 
 </html>
+
+<?php
+
+require_once("controllers/registro_controller.php");
+
+$controlador = new registro_controller();
+
+if (isset($_POST['Registrar'])) {
+    $controlador->createUser();
+}
+
+?>
