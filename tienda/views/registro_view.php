@@ -80,7 +80,7 @@
         REGISTRO
     </div>
     <div class="formulario">
-        <form method="POST">
+        <form method="POST" action="/controllers/registro_controller.php">
             <label for="nick">Nick</label>
             <input type="text" name="nick">
             <label for="email">Correo electronico</label>
@@ -89,7 +89,7 @@
             <input type="password" name="contrasenya">
             <label for="contrasenya2">Repita la contraseña</label>
             <input type="password" name="contrasenya2">
-            <button class="submit" value="Registrar">Registrar</button>
+            <input type="submit" class="submit" value="Registrar">
         </form>
     </div>
 
@@ -103,15 +103,3 @@
 </body>
 
 </html>
-
-<?php
-
-require_once("controllers/registro_controller.php");
-
-$controlador = new registro_controller();
-
-if (isset($_POST['Registrar'])) {
-    $controlador->createUser();
-}
-
-?>
