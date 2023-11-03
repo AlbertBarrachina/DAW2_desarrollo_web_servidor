@@ -89,13 +89,13 @@
             <input type="password" name="contrasenya">
             <label for="contrasenya2">Repita la contraseña</label>
             <input type="password" name="contrasenya2">
-            <input type="submit" class="submit" value="Registrar">
+            <button class="submit" value="Registrar">Registrar</button>
         </form>
     </div>
 
     <div class="boton-volver">
         <button>
-            <a href="productos_view.php">
+            <a href="views/productos_view.php">
             volver                
             </a>
         </button>

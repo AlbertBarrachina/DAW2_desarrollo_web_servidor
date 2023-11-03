@@ -6,7 +6,6 @@ class registro_model{
 
     public function __construct()
     {
-        $this->modelo = new registro_controller();
         $this->con = Conectar::conexion();
     }
 

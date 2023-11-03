@@ -1,11 +1,13 @@
 <?php
 require_once("models/registro_model.php");
-$modelo = new registro_model();
+
 class registro_controller
 {
+    private $modelo;
+
     public function __construct()
     {
-        $this->modelo = new registro_model();
+        $modelo = new registro_model();
     }
     public function createUser()
     {
