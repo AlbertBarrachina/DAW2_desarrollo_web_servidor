@@ -93,7 +93,7 @@
     if ($Loged == false) {
         echo '
         <div class="icono-perfil">
-            <a href="perfil_view.php">
+            <a href="../views/perfil_view.php">
                 <img src="/img/user.png" alt="">
             </a>
         </div>
@@ -106,7 +106,7 @@
     } else {
         echo '
         <div class="boton-login">
-        <button><a href="login_view.php">Iniciar sesion</a></button>
+        <button><a href="views/login_view.php">Iniciar sesion</a></button>
         </div>
         ';
     }

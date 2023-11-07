@@ -80,7 +80,7 @@
         REGISTRO
     </div>
     <div class="formulario">
-        <form method="POST" action="/controllers/registro_controller.php">
+        <form method="POST" action="/registro_controller.php">
             <label for="nick">Nick</label>
             <input type="text" name="nick">
             <label for="email">Correo electronico</label>

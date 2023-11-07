@@ -98,16 +98,17 @@
             <input type="password" name="contrasenya">
             <input type="submit" class="submit" value="Iniciar sesion">
         </form>
-        <button class="boton-registro"><a href="registro_view.php">REGISTRAR CUENTA NUEVA</a></button>
+        <button class="boton-registro"><a href="views/registro_view.php">REGISTRAR CUENTA NUEVA</a></button>
     </div>
-
+        <!--
     <div class="boton-volver">
         <button>
-            <a href="productos_view.php">
+            <a href="views/productos_view.php">
                 volver
             </a>
         </button>
-    </div>
+    </div> 
+    -->
 </body>
 
 </html>
