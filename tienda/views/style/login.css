@@ -64,8 +64,9 @@ a {
 
 .boton-registro {
     position: relative;
-    top: 10pc;
-    left: 50%;
+    top: 2.5pc;
+    left: 23%;
+    width: min-content;
 }
 
 .boton-volver {

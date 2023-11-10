@@ -1,5 +1,6 @@
 <?php
-require_once "controllers/login_cotntroller.php";
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/controllers');
+require_once('login_controller.php');
 class login_model
 {
     private $controller;
@@ -12,11 +13,12 @@ class login_model
     public function comprobarLogin($nick, $contrasenya)
     {
         $logeado = $this->controller->isUserValid($nick, $contrasenya);
-        $logeado=true;
-        if ($logeado) {
-            header("Location: views/home_view.php");
+        if ($logeado==false) {
+            session_start();
+            $_SESSION['user'] = $nick;
+            header("Location: /tienda/views/home_view.php");
         } else {
-            header("Location: views/registro_view.php");
+            header("Location: /tienda/views/registro_view.php");
         }
     }
 }

@@ -1,5 +1,6 @@
 <?php
-require_once('models/login_model.php');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/models');
+require_once('login_model.php');
 
 $modelo = new login_model;
 
@@ -8,6 +9,10 @@ if (isset($_POST['login'])) {
     $nick = $_POST['nick'];
     $contrasenya = $_POST['contrasenya'];
     $modelo->comprobarLogin($nick, $contrasenya);
+    exit();
+}else if(isset($_POST['registrar'])){
+    header("Location: /tienda/views/registro_view.php");
+    exit();
 }
 ?>
 
@@ -34,8 +39,9 @@ if (isset($_POST['login'])) {
             <input type="password" name="contrasenya">
             <input type="submit" class="submit" value="Iniciar sesion" name="login">
         </form>
-        <!--areglar el href para que use php en vez de un "a"-->
-        <button class="boton-registro"><a href="/tienda/views/registro_view.php">REGISTRAR CUENTA NUEVA</a></button>
+        <form method="POST">
+            <input type="submit" class="boton-registro" name="registrar" value="REGISTRAR CUENTA NUEVA">
+        </form>
     </div>
 </body>
 

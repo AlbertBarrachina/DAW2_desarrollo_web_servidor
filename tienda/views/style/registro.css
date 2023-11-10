@@ -57,9 +57,18 @@ input {
     border-radius: 50px;
     border-color: black;
 }
-.boton-volver{
+.boton-login{
+    z-index: 1;
+    width: 10pc;
+    height: 3pc;
+    border-radius: 1pc; 
+    position: relative;
+    left: 7pc;
+}
+.form-login{
     position: absolute;
-    top: 1pc;
-    left: 2pc;
-    z-index: 1; 
+    top: 45.5pc;
+    left: 46pc;
+    text-align: left;
+
 }
