@@ -21,8 +21,6 @@ a {
 }
 
 .productos {
-    background-color: black;
-    opacity: 35%;
     position: absolute;
     width: 100%;
     height: 800px;
@@ -32,10 +30,10 @@ a {
 
 .icono-perfil {
     position: absolute;
-    left: 2pc;
+    right: 5pc;
     top: 0.5pc;
     background-color: white;
-    width: 35px;
+    width: 70px;
     height: 35px;
     box-shadow: 1px 1px 1px 2px white;
     border-radius: 100%;
@@ -58,7 +56,7 @@ a {
 }
 
 .boton-logout {
-    right: 6pc;
+    right: 10pc;
 }
 
 .boton-logout>button {

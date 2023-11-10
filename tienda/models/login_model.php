@@ -15,7 +15,7 @@ class login_model
         $logeado = $this->controller->isUserValid($nick, $contrasenya);
         if ($logeado==true) {
             session_start();
-            $_SESSION['user'] = $nick;
+            session_name($nick);
             header("Location: /tienda/views/home_view.php");
         } else {
             header("Location: /tienda/views/registro_view.php");

@@ -34,7 +34,7 @@
         <button type="submit" name="usuario">
             <img src="/tienda/img/user.png" alt="">
             <?php
-            $nombre = session_id();
+            $nombre = session_name();
             if($nombre==null){
                 $nombre="Cargando...";
             }
