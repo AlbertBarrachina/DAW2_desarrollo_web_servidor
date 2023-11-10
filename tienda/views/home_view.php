@@ -1,3 +1,18 @@
+<?php
+
+    if (isset($_POST['logout'])) {
+        session_destroy();
+        header("Location: /tienda/views/login_view.php");
+        exit();
+    }elseif(isset($_POST['usuario'])){
+        header("Location: /tienda/views/perfil_view.php");
+        exit();
+    }elseif(isset($_POST['productos'])){
+        header("Location: /tienda/views/productos_view.php");
+        exit();
+    }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,39 +28,30 @@
     <div class="titulo">
         TIENDA ONLINE
     </div>
-    <?php
-    $Loged = false;
-    if (isset($_POST['toggle'])) {
-        if ($Loged) {
-            $Loged = false;
-        } else {
-            $Loged = true;
-        }
-    }
-    if ($Loged == false) {
-        echo '
-        <div class="icono-perfil">
-            <a href="../views/perfil_view.php">
-                <img src="/img/user.png" alt="">
-            </a>
+    
+<div class="icono-perfil">
+    <form method="POST" class="perfil">
+        <button type="submit" name="usuario">
+            <img src="/tienda/img/user.png" alt="">
+            <?php
+            $nombre = session_id();
+            if($nombre==null){
+                $nombre="Cargando...";
+            }
+            echo $nombre;
+            ?>
+        </button>
+    </form>
         </div>
         <div class="boton-logout">
         <form method="POST">
             <button type="submit" name="logout">Cerrar sesion</button>
         <form>
         </div>
-        ';
-    } else {
-        echo '
-        <div class="boton-login">
-        <button><a href="views/login_view.php">Iniciar sesion</a></button>
-        </div>
-        ';
-    }
-    ?>
-
     <div class="productos">
-
+            <form method="POST">
+            <button type="submit" name="productos">Mostrar productos</button>
+            </form>
     </div>
 </body>
 

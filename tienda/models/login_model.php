@@ -13,7 +13,7 @@ class login_model
     public function comprobarLogin($nick, $contrasenya)
     {
         $logeado = $this->controller->isUserValid($nick, $contrasenya);
-        if ($logeado==false) {
+        if ($logeado==true) {
             session_start();
             $_SESSION['user'] = $nick;
             header("Location: /tienda/views/home_view.php");

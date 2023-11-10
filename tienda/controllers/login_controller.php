@@ -14,7 +14,6 @@ class login_controller
     //comprueba si los daots de login son correctos, si es asi carga la pagina principal
     public function isUserValid($nick, $contrasenya) {
 
-        if ($existe != 0) {
             $sql = 'SELECT contrasenya FROM usuarios WHERE nick = "' . $nick . '"';
 
         $query = mysqli_query($this->con, $sql);
@@ -25,10 +24,6 @@ class login_controller
             } else {
                return false;
             }
-
-         } else {
-            return false;
-         }
         }
     }
 

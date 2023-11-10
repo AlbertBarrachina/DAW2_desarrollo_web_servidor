@@ -32,7 +32,7 @@ a {
 
 .icono-perfil {
     position: absolute;
-    right: 2pc;
+    left: 2pc;
     top: 0.5pc;
     background-color: white;
     width: 35px;
@@ -41,14 +41,14 @@ a {
     border-radius: 100%;
 }
 
-.icono-perfil>a>img {
+.icono-perfil>img {
     width: 35px;
     height: 35px;
 }
 
 .boton-login,
 .boton-logout {
-    text-align: center;
+    text-align: left;
     position: absolute;
     right: 2pc;
     top: 1pc;
@@ -58,10 +58,15 @@ a {
 }
 
 .boton-logout {
-    right: 5pc;
+    right: 6pc;
 }
 
 .boton-logout>button {
     font-size: 10.5px;
 
+}
+.perfil{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
 }

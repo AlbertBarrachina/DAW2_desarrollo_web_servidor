@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2023 a las 18:00:25
+-- Tiempo de generación: 10-11-2023 a las 19:33:51
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -70,9 +70,32 @@ CREATE TABLE `usuarios` (
   `id` int(16) NOT NULL,
   `nick` varchar(20) NOT NULL,
   `email` varchar(80) NOT NULL,
-  `contrasenya` varchar(20) NOT NULL,
-  `confirmacion_contrasenya` varchar(20) NOT NULL
+  `contrasenya` varchar(100) NOT NULL,
+  `confirmacion_contrasenya` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nick`, `email`, `contrasenya`, `confirmacion_contrasenya`) VALUES
+(1, 'albert', 'albert', '$2y$10$aFZhcHDRnasPC9.ucRxyS.R1pmkFZZ5MvADHP09XGVjH/69hSDDA2', '$2y$10$BFJJUXswPl7FRMbBspPeJ.19dhEVcQdG7ghjfiByrO8N4oQusZjQ.');
+
+--
+-- Disparadores `usuarios`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_users` BEFORE INSERT ON `usuarios` FOR EACH ROW BEGIN
+    DECLARE new_id INT;
+    
+    -- Calculate the new numeric value based on the current auto-incremented ID
+    SELECT IFNULL(MAX(id), 0) + 1 INTO new_id FROM usuarios;
+
+    -- Set the new numeric value for the inserted row
+    SET NEW.id = new_id;
+END
+$$
+DELIMITER ;
 
 --
 -- Índices para tablas volcadas
@@ -103,6 +126,16 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

@@ -1,3 +1,15 @@
+<?php
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/models');
+require_once('perfil_model.php');
+
+$modelo = new perfil_model;
+
+if (isset($_POST['volver'])) {
+    header("Location: /tienda/views/home_view.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,23 +22,17 @@
 <div class="titulo">
         Inicio de sesion
     </div>
-    <div class="formulario">
-        <form action="" method="POST">
-            <label for="nick">Nick</label>
-            <input type="text" name="nick">
-            <label for="contrasenya">Contraseña</label>
-            <input type="password" name="contrasenya">
-            <input type="submit" class="submit" value="Iniciar sesion">
-        </form>
-        <button class="boton-registro"><a href="views/registro_view.php">REGISTRAR CUENTA NUEVA</a></button>
+    <div >
+        <h1>Info del usaurio</h1>
+        aqui va la info de tu usuario
     </div>
 
     <div class="boton-volver">
-        <button>
-            <a href="productos_view.php">
+        <form method="POST">
+        <button type="submit" name="volver">
                 volver
-            </a>
         </button>
+        </form>
     </div>
 </body>
 </html>

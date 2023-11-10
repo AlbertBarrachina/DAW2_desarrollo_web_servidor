@@ -16,8 +16,6 @@ class registro_controller
     {
         $password = password_hash($contrasenya, PASSWORD_DEFAULT);
         $password2 = password_hash($contrasenya2, PASSWORD_DEFAULT);
-        //$password = $contrasenya;
-        //$password2 = $contrasenya2;
         try {
 
             $sql = 'INSERT INTO usuarios VALUES ("", "'. $nick .'", "'. $email .'", "'. $password .'", "'. $password2 .'")';
