@@ -1,5 +1,5 @@
 <?php
-
+    session_start();
     if (isset($_POST['logout'])) {
         session_destroy();
         header("Location: /tienda/views/login_view.php");
@@ -34,7 +34,7 @@
         <button type="submit" name="usuario">
             <img src="/tienda/img/user.png" alt="">
             <?php
-            $nombre = session_name();
+            $nombre = $_SESSION['nick'];
             if($nombre==null){
                 $nombre="Cargando...";
             }

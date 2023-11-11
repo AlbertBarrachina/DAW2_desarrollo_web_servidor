@@ -25,5 +25,19 @@ class login_controller
                return false;
             }
         }
+
+    //devuelve el correo del usuario
+    public function getMail($nick) {
+        $mail ="";
+        $sql = 'SELECT email FROM usuarios WHERE nick = "' . $nick . '"';
+
+    $query = mysqli_query($this->con, $sql);
+    
+        if ($mail = mysqli_fetch_assoc($query)['email']){
+            return $mail;
+        } else {
+           return $mail;
+        }
+    }
     }
 
