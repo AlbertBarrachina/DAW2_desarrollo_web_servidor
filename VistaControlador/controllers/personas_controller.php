@@ -1,10 +1,9 @@
 <?php
-require_once('models/personas_model.php');
-require_once('persoanas_controller.php');
+//Llamada al modelo
+require_once("db/db.php");
+require_once("models/personas_model.php");
 class personas_controller
 {
-    private $db;
-    private $personas;
     private $modelo;
     private $con;
 
@@ -12,7 +11,6 @@ class personas_controller
     {
         $this->modelo = new personas_model();
         $this->con = Conectar::conexion();
-        $this->personas = array();
     }
 
     //guarda el alumno creado si no puede da error
@@ -23,7 +21,7 @@ class personas_controller
         $dni = $_POST['dni'];
         $curso = $_POST['curso'];
 
-        $sql = 'INSERT INTO alumnos VALUES ("' . $nombre . '", "' . $apellidos . '", "' . $dni . '","' . $curso . '")';
+        $sql = 'INSERT INTO alumno VALUES ("' . $nombre . '", "' . $apellidos . '", "' . $dni . '","' . $curso . '")';
         $query = mysqli_query($this->con, $sql);
 
         if ($query) {
@@ -35,7 +33,7 @@ class personas_controller
     }
     //muestra todos los alumnos matriculados
     public function mostrarAlumnos() {
-        $sql = 'SELECT * FROM alumnos';
+        $sql = 'SELECT * FROM alumno';
         $query = mysqli_query($this->con, $sql);
         $this->modelo->mostrarAlumnos($query);
     }

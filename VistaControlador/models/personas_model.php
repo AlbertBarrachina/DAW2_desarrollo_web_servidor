@@ -1,10 +1,7 @@
 <?php
-//Llamada al modelo
-require_once("models/personas_model.php");
-$per = new personas_model();
 
 //Llamada a la vista
-require_once("views/personas_view.phtml");
+require_once("views/formulario.php");
 
 class personas_model
 {

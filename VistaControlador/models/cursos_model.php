@@ -1,29 +1,21 @@
 <?php
-//Llamada al modelo
-require_once("models/personas_model.php");
-$per = new personas_model();
 
 //Llamada a la vista
-require_once("views/personas_view.phtml");
+require_once("views/formulario.php");
+require_once("db/db.php");
 
 class cursos_model
 {
+    private $con;
+    public function __construct()
+    {
+        $this->con = Conectar::conexion();
+    }
     public function mostrarcursoGuardado()
     {
         echo '
     <br>
-    <form action="index.php">
-    <p>Cusro guardado<p>
-    <input type="submit" value="Volver"">
-    </form>';
-    }
-    public function BotonVolver()
-    {
-        echo '
-        <br>
-        <form action="index.php">
-        <input type="submit" value="Volver"">
-        </form>';
+    <p>Cusro guardado<p>';
     }
 
     public function mostrarcursos($info)
@@ -42,7 +34,6 @@ class cursos_model
             echo '<h1>Lista de curoso</h1>'; 
             echo "<h2> No hay curoso.</h2>";
         }
-        $this->BotonVolver();
     }
 }
 ?>

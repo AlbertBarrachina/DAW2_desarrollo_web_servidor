@@ -1,9 +1,8 @@
 <?php
+require_once("db/db.php");
 require_once('models/cursos_model.php');
-require_once('persoanas_controller.php');
 class cursos_controller
 {
-    private $db;
     private $modelo;
     private $con;
 
@@ -14,30 +13,40 @@ class cursos_controller
     }
 
     //guarda el alumno creado si no puede da error
-    public function guardarCurso()
+    public function guardarCurso($nombre,$anno)
     {
-        $nombre = $_POST['nombre'];
-        $apellidos = $_POST['anno'];
-
-        $sql = "INSERT INTO alumnos VALUES (". $nombre .", ". $apellidos .")";
+        try { $sql = 'INSERT INTO cursos VALUES ("'. $nombre .'", "'. $anno .'")';
         $query = mysqli_query($this->con, $sql);
 
         if ($query) {
             $this->modelo->mostrarCursoGuardado();
         } else {
             echo 'Error';
-            $this->BotonVolver();
         }
+            
+        } catch (Exception $e) {
+            
+        }
+       
     }
     //muestra los cursos existentes
     public function mostrarCursos(){
         $sql = 'SELECT * FROM cursos';
         $query = mysqli_query($this->con, $sql);
-        $this->modelo->mostrarCursos($query);
+        $this->modelo->mostrarcursos($query);
     }
-    //muestra un boton para volver al formulario
-    public function botonVolver()
-    {
-        $this->modelo->botonVolver();
+
+    function cargar(){
+        $query = "SELECT nombre FROM cursos";
+        $result = $this->con->query($query);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $nombre = $row['nombre'];
+                echo "<option value=\"$nombre\">$nombre</option>";
+            }
+        } else {
+            echo "<option value=\"\">No cursos found</option>";
+        }
     }
 }
