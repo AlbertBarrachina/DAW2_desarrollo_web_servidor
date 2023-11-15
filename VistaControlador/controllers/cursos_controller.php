@@ -13,7 +13,7 @@ class cursos_controller
         $this->con = Conectar::conexion();
     }
 
-    //guarda el alumno creado si no puede da error
+    //guarda el curso creado en la base de datos
     public function guardarCurso($nombre,$anno)
     {
         try { $sql = 'INSERT INTO cursos VALUES ("'. $nombre .'", "'. $anno .'")';
@@ -30,13 +30,14 @@ class cursos_controller
         }
        
     }
-    //muestra los cursos existentes
+    //genera una matriz con a informacion de todos los cursos creados
     public function mostrarCursos(){
         $sql = 'SELECT * FROM cursos';
         $query = mysqli_query($this->con, $sql);
         $this->modelo->mostrarcursos($query);
     }
 
+    //elimina el curso y ,por eliminacion en cascada, los alumnos matriculados en el curso
     public function eliminarCurso($nombre) {
         $sql = 'DELETE FROM cursos WHERE nombre = ?';
         
@@ -47,14 +48,12 @@ class cursos_controller
         $stmt->execute();
     
         if ($stmt->affected_rows > 0) {
-            echo "Curso eliminado correctamente.";
-        } else {
-            echo "No se encontró ningún curso con ese nombre.";
+            $this->modelo->eliminarCurso();
         }
-    
         die();
     }
 
+    //carga las opciones de los diferetes cursos que existen
     public function cargar(){
         $query = "SELECT nombre FROM cursos";
         $result = $this->con->query($query);
@@ -64,8 +63,6 @@ class cursos_controller
                 $nombre = $row['nombre'];
                 echo "<option value=\"$nombre\">$nombre</option>";
             }
-        } else {
-            echo "<option value=\"\">No cursos found</option>";
         }
     }
 }

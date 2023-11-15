@@ -5,6 +5,8 @@ require_once("views/formulario.php");
 
 class personas_model
 {
+
+    //indica que se ha matriculado el alumno
     public function mostrarAlumnoGuardado()
     {
         echo '
@@ -16,6 +18,7 @@ class personas_model
         die();
     }
 
+    //muestra los alumnos que hay en la base de datos
     public function mostrarAlumnos($info)
     {
         if (mysqli_num_rows($info) > 0) {

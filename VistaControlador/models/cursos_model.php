@@ -5,17 +5,20 @@ require_once("views/formulario.php");
 
 class cursos_model
 {
+
+    //indica que se ha guardado el curso
     public function mostrarCursoGuardado()
     {
         echo '
     <br>
-    <p>Cusro guardado<p>
+    <p>Curso guardado.<p>
     <form action="index.php">
     <input type="submit" value="volver">
     </form>';
-    exit();
+        exit();
     }
 
+    //muestra por pantalla todos los cursos que hay en la base de datos
     public function mostrarcursos($info)
     {
         if (mysqli_num_rows($info) > 0) {
@@ -37,5 +40,15 @@ class cursos_model
             <h2>No hay cursos.</h2>';
         }
         exit();
+    }
+
+    //indica que el curso se ha eliminado
+    public function eliminarCurso()
+    {
+        echo 'Curso eliminado correctamente.
+        <form action="index.php">
+        <br>
+        <input type="submit" value="volver">
+        </form>';
     }
 }

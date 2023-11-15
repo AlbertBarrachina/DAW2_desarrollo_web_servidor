@@ -45,6 +45,7 @@ if (isset($_POST['guardarAlumno'])) {
         <input type="text" name="dni" required><br>
         <label for="curso">Curso:</label><br>
         <select name="curso" id="curso" required>
+            <option value=""></option>
             <?php
             //set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/vistacontrolador/');
             require_once("controllers/cursos_controller.php");
@@ -56,7 +57,7 @@ if (isset($_POST['guardarAlumno'])) {
         <button type="submit" name="guardarAlumno" value="guardarAlumno">Guardar</button>
     </form>
     <form method="POST">
-    <button type="submit" name="mostrarAlumnos" value="mostrarAlumnos"> Mostrar alumnos matriculados</button>
+        <button type="submit" name="mostrarAlumnos" value="mostrarAlumnos"> Mostrar alumnos matriculados</button>
     </form>
     <h1>formulario de cursos</h1>
     <form method="post">
@@ -74,6 +75,7 @@ if (isset($_POST['guardarAlumno'])) {
     <form method="post">
         <h2>ELIMINAR curso</h2>
         <select name="curso" id="curso" required>
+            <option value=""></option>
             <?php
             //set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/vistacontrolador/');
             require_once("controllers/cursos_controller.php");

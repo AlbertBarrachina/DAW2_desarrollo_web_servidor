@@ -14,7 +14,7 @@ class personas_controller
         $this->con = Conectar::conexion();
     }
 
-    //guarda el alumno creado si no puede da error
+    //guarda el alumno creado si no puede deveulve un mensaje de error
     public function guardarAlumno()
     {
         $nombre = $_POST['nombre'];
@@ -28,10 +28,14 @@ class personas_controller
         if ($query) {
             $this->modelo->mostrarAlumnoGuardado();
         } else {
-            echo 'Error';
+            echo 'Error
+            <form action="index.php">
+            <br>
+            <input type="submit" value="volver">
+            </form>';
         }
     }
-    //muestra todos los alumnos matriculados
+    //genera una matriz con a informacion de todos los alumnos matriculados
     public function mostrarAlumnos() {
         $sql = 'SELECT * FROM alumno';
         $query = mysqli_query($this->con, $sql);
