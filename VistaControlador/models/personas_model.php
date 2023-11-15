@@ -14,14 +14,6 @@ class personas_model
     <input type="submit" value="Volver"">
     </form>';
     }
-    public function BotonVolver()
-    {
-        echo '
-        <br>
-        <form action="index.php">
-        <input type="submit" value="Volver"">
-        </form>';
-    }
 
     public function mostrarAlumnos($info)
     {
@@ -41,7 +33,6 @@ class personas_model
             echo '<h1>Lista de alumnos matriculados</h1>'; 
             echo "<h2> No hay alumnos matriculados en ningun curso.</h2>";
         }
-        $this->BotonVolver();
     }
 }
 ?>

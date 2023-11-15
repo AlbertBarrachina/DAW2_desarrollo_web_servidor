@@ -28,7 +28,6 @@ class personas_controller
             $this->modelo->mostrarAlumnoGuardado();
         } else {
             echo 'Error';
-            $this->modelo->BotonVolver();
         }
     }
     //muestra todos los alumnos matriculados
@@ -36,10 +35,5 @@ class personas_controller
         $sql = 'SELECT * FROM alumno';
         $query = mysqli_query($this->con, $sql);
         $this->modelo->mostrarAlumnos($query);
-    }
-    //muestra un boton para volver al formulario
-    public function botonVolver()
-    {
-        $this->modelo->botonVolver();
     }
 }

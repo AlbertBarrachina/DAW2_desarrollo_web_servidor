@@ -36,7 +36,7 @@ class cursos_controller
         $this->modelo->mostrarcursos($query);
     }
 
-    function cargar(){
+    public function cargar(){
         $query = "SELECT nombre FROM cursos";
         $result = $this->con->query($query);
 

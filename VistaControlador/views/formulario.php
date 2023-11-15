@@ -21,9 +21,7 @@
         <label for="curso">Curso:</label><br>
         <select name="curso" id="curso">
             <?php
-            require_once('controllers/cursos_controller.php');
-            $controlador = new cursos_controller;
-            $controlador->cargar();
+            $this->cargar();
             ?>
         </select>
         <br><br>
@@ -51,6 +49,8 @@ require_once("controllers/cursos_controller.php");
 require_once("controllers/personas_controller.php");
 $curso = new cursos_controller;
 $alumno = new personas_controller;
+
+
 if (isset($_POST['guardarAlumno'])) {
     header("Location: /vistacontrolador/views/resultados.php");
     $alumno->guardarAlumno();
@@ -67,4 +67,5 @@ if (isset($_POST['guardarAlumno'])) {
     //$curso->mostrarCursos();
     
 }
+
 ?>

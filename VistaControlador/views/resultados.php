@@ -19,8 +19,8 @@
 </html>
 
 <?php
-
+require_once("formulario.php");
 if (isset($_POST['volver'])) {
-    header("Location: /vistacontrolador/index.php");
+    header("Location: /vistacontrolador/views/formulario.php");
 }
 ?>
