@@ -1,4 +1,5 @@
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/vistacontrolador/');
 require_once("db/db.php");
 require_once('models/cursos_model.php');
 class cursos_controller
@@ -34,6 +35,24 @@ class cursos_controller
         $sql = 'SELECT * FROM cursos';
         $query = mysqli_query($this->con, $sql);
         $this->modelo->mostrarcursos($query);
+    }
+
+    public function eliminarCurso($nombre) {
+        $sql = 'DELETE FROM cursos WHERE nombre = ?';
+        
+        $stmt = $this->con->prepare($sql);
+    
+        $stmt->bind_param('s', $nombre);
+    
+        $stmt->execute();
+    
+        if ($stmt->affected_rows > 0) {
+            echo "Curso eliminado correctamente.";
+        } else {
+            echo "No se encontró ningún curso con ese nombre.";
+        }
+    
+        die();
     }
 
     public function cargar(){

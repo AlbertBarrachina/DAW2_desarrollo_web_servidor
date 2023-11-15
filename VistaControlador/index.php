@@ -1,5 +1,6 @@
 <?php
-require_once("views/formulario.php");
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/vistacontrolador/');
+require("views/formulario.php");
 
 
 ?>

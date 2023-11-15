@@ -1,5 +1,6 @@
 <?php
 //Llamada al modelo
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/vistacontrolador/');
 require_once("db/db.php");
 require_once("models/personas_model.php");
 class personas_controller
