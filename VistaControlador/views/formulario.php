@@ -52,15 +52,19 @@ require_once("controllers/personas_controller.php");
 $curso = new cursos_controller;
 $alumno = new personas_controller;
 if (isset($_POST['guardarAlumno'])) {
+    header("Location: /vistacontrolador/views/resultados.php");
     $alumno->guardarAlumno();
-} else if (isset($_GET['mostrarAlumnos'])) {
+} else if (isset($_POST['mostrarAlumnos'])) {
+    header("Location: /vistacontrolador/views/resultados.php");
     $alumno->mostrarAlumnos();
 } else if (isset($_POST['guardarCurso'])) {
+    header("Location: /vistacontrolador/views/resultados.php");
     $nombre = $_POST['nombre'];
     $anno = $_POST['anno'];
     $curso->guardarCurso($nombre,$anno);
-} else if (isset($_GET['mostrarCursos'])) {
-    $curso->mostrarCursos();
+} else if (isset($_POST['mostrarCursos'])) {
+    header("Location: /vistacontrolador/views/resultados.php");
+    //$curso->mostrarCursos();
     
 }
 ?>

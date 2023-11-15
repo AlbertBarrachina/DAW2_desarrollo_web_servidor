@@ -10,8 +10,8 @@
 </head>
 
 <body>
-<form action="formulario.php">
-    <button class="submit">volver</button>
+<form action="formulario.php" method="POST">
+    <button class="submit" value="volver">volver</button>
 </form>
    
 </body>
@@ -19,20 +19,8 @@
 </html>
 
 <?php
-require_once("controllers/cursos_controller.php");
-require_once("controllers/personas_controller.php");
-$curso = new cursos_controller;
-$alumno = new personas_controller;
-if (isset($_POST['guardarAlumno'])) {
-    $alumno->guardarAlumno();
-} else if (isset($_GET['mostrarAlumnos'])) {
-    $alumno->mostrarAlumnos();
-} else if (isset($_POST['guardarCurso'])) {
-    $nombre = $_POST['nombre'];
-    $anno = $_POST['anno'];
-    $curso->guardarCurso($nombre,$anno);
-} else if (isset($_GET['mostrarCursos'])) {
-    $curso->mostrarCursos();
-    
+
+if (isset($_POST['volver'])) {
+    header("Location: /vistacontrolador/index.php");
 }
 ?>
