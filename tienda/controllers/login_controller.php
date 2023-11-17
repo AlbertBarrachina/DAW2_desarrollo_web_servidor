@@ -1,6 +1,6 @@
 <?php
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/db');
-require_once('db.php');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
+require_once('db/db.php');
 class login_controller
 {
     private $con;

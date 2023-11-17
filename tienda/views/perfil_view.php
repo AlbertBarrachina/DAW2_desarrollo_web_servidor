@@ -1,7 +1,7 @@
 <?php
 session_start();
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/models');
-require_once('perfil_model.php');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
+require_once('models/perfil_model.php');
 
 $modelo = new perfil_model;
 
@@ -10,12 +10,11 @@ if (isset($_POST['volver'])) {
     exit();
 }elseif (isset($_POST['guardar'])) {
     $email = $_POST['email'];
-    $model->cambiarInfo($email);
-    header("Location: /tienda/views/perfil_view.php");
-    exit();
+    $modelo->cambiarEmail($email);
 }elseif (isset($_POST['guardarContrasenya'])) {
-    header("Location: /tienda/views/home_view.php");
-    exit();
+    $contrasenya = $_POST['contrasenya'];
+    $contrasenya2 = $_POST['contrasenya2'];
+    $modelo->cambiarContrasenya($contrasenya,$contrasenya2);
 }
 ?>
 
@@ -26,7 +25,7 @@ if (isset($_POST['volver'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de usuario</title>
+    <title>Tienda - Perfil</title>
     <style>
         table {
             width: fit-content;
@@ -56,12 +55,16 @@ if (isset($_POST['volver'])) {
                     </td>
                     <td>
                         <?php
-                        echo '<input type="text" value="' . $_SESSION['mail'] . '" name="email">';
+                            echo $_SESSION['mail'];
                         ?>
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="guardar cambios" name="guardar">
+                <?php
+                    echo '<input type="email" placeholder="' . $_SESSION['mail'] . '" name="email" required>';
+                ?>
+                <br>
+            <input type="submit" value="Cambiar correo" name="guardar">
         </form>
         <form method="POST">
             <br><br><br>
@@ -71,6 +74,7 @@ if (isset($_POST['volver'])) {
             <input type="submit" value="guardar cambios" name="guardarContrasenya">
             <br><br><br>
         </form>
+
     </div>
 
     <div class="boton-volver">

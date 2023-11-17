@@ -1,6 +1,6 @@
 <?php
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/models');
-require_once('login_model.php');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
+require_once('models/login_model.php');
 
 $modelo = new login_model;
 

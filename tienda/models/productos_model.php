@@ -1,4 +1,6 @@
 <?php
-class perfil_model
-{}
+class productos_model
+{
+
+}
 ?>

@@ -1,5 +1,6 @@
 <?php
-
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
+require_once('db/db.php');
 class perfil_controller
 {
     private $con;
@@ -13,17 +14,18 @@ class perfil_controller
 
     //cambia el correo de la cuenta
     public function cambiarEmail($email)
-    {
-        $sql = 'SELECT nick FROM usuarios WHERE nick = "' . $email . '"';
-
-        $query = mysqli_query($this->con, $sql);
-        $nombre = mysqli_fetch_assoc($query)['nick'];
-
-        if ($nombre != null) {
-            $sql = 'UPDATE usuarios SET email = "' . $email . '" WHERE nick = "' . $_SESSION['nick'] . '"';
+    {      
+            $sql = 'UPDATE usuarios SET email = "' . $email . '" WHERE nick = "' . $_SESSION['nick']. '"';
 
             $query = mysqli_query($this->con, $sql);
-
-        }
+            $_SESSION['mail'] = $email;
     }
+        //cambia el correo de la cuenta
+        public function cambiarContrasenya($contrasenya)
+        {      
+            $password = password_hash($contrasenya, PASSWORD_DEFAULT);
+                $sql = 'UPDATE usuarios SET contrasenya = "' . $password . '", confirmacion_contrasenya= "'.$password.'" WHERE nick = "' . $_SESSION['nick']. '"';
+    
+                $query = mysqli_query($this->con, $sql);
+        }
 }

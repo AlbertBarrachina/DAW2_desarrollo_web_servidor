@@ -1,6 +1,6 @@
 <?php
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/controllers');
-require_once('registro_controller.php');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
+require_once('controllers/registro_controller.php');
 class registro_model{
     private $controller;
 

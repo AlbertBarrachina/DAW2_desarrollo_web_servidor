@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2023 a las 19:33:51
+-- Tiempo de generación: 17-11-2023 a las 18:45:49
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -79,7 +79,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nick`, `email`, `contrasenya`, `confirmacion_contrasenya`) VALUES
-(1, 'albert', 'albert', '$2y$10$aFZhcHDRnasPC9.ucRxyS.R1pmkFZZ5MvADHP09XGVjH/69hSDDA2', '$2y$10$BFJJUXswPl7FRMbBspPeJ.19dhEVcQdG7ghjfiByrO8N4oQusZjQ.');
+(2, 'admin', 'admin@gmail.com', '$2y$10$.SKYP51iA68uu6sRJ2a4wuC4hUijW2PNjElbE6C/Irk2my682Yuq.', '$2y$10$F3xAuehTJ7uJxTHbBqSgX.B6QoFvB8F8osYNMSQGE3hRY/vIjPv7.'),
+(3, 'user', 'user@gmail.com', '$2y$10$wXivj5XonVP67VkJ8Bxm9.CflTMpEM5nZJPscDGEixB7wHE1xbrSq', '$2y$10$Ne/k98/.xZpqogufE/84DehHj.8jgtAxtxcf.rsh76BWR60ZM0s.6');
 
 --
 -- Disparadores `usuarios`
@@ -135,7 +136,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
