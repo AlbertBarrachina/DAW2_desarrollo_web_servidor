@@ -6,9 +6,9 @@ class registro_model{
 
     public function __construct()
     {
-        // Crea una instancia del controlador de usuarios.
         $this->controller = new registro_controller;
     }
+    //guarda el usuario en la base de datos y carga pantalla login
     public function registrar($nick, $email, $contrasenya, $contrasenya2){
        $boleano= $this->controller->registrar($nick, $email, $contrasenya, $contrasenya2);
        if ($boleano == true){

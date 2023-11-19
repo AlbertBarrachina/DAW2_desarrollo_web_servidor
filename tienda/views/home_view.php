@@ -22,6 +22,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
     <link rel="stylesheet" type="text/css" href="/tienda/views/style/productos.css">
+    <script>
+        function confirmLogout() {
+            return confirm("Are you sure you want to log out?");
+        }
+    </script>
 </head>
 
 <body>
@@ -34,7 +39,7 @@
         <button type="submit" name="usuario">
             <img src="/tienda/img/user.png" alt="">
             <?php
-            $nombre = $_SESSION['nick'];
+            $nombre = $_SESSION['nick'.session_id()];
             if($nombre==null){
                 $nombre="Cargando...";
             }
@@ -44,9 +49,9 @@
     </form>
         </div>
         <div class="boton-logout">
-        <form method="POST">
-            <button type="submit" name="logout">Cerrar sesion</button>
-        <form>
+        <form id="logoutForm" method="POST" onsubmit="return confirmLogout()">
+            <button type="submit" name="logout" >Cerrar sesion</button>
+        </form>
         </div>
     <div class="productos">
             <form method="POST">

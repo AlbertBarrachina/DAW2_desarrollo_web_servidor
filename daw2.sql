@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2023 a las 18:45:49
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 19-11-2023 a las 20:26:41
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,11 +28,28 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `carrito` (
-  `id` int(8) NOT NULL,
-  `producto` int(8) NOT NULL,
-  `cantidad` int(2) NOT NULL,
-  `precio_total` float(4,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int(16) NOT NULL,
+  `usuario` int(16) NOT NULL,
+  `producto` int(16) NOT NULL,
+  `cantidad` int(3) NOT NULL,
+  `precio_total` float(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Disparadores `carrito`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_carrito` BEFORE INSERT ON `carrito` FOR EACH ROW BEGIN
+    DECLARE new_id INT;
+    
+    -- Calculate the new numeric value based on the current auto-incremented ID
+    SELECT IFNULL(MAX(id), 0) + 1 INTO new_id FROM carrito;
+
+    -- Set the new numeric value for the inserted row
+    SET NEW.id = new_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -44,7 +61,16 @@ CREATE TABLE `categorias` (
   `id` int(3) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `descripcion` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`, `descripcion`) VALUES
+(1, 'muebles', 'muebles variados'),
+(2, 'electrodomesticos', 'electrodomésticos para el hogar y la oficina'),
+(3, 'electronica', 'productos como ordenadores, telefonos mobil y cables');
 
 -- --------------------------------------------------------
 
@@ -53,12 +79,23 @@ CREATE TABLE `categorias` (
 --
 
 CREATE TABLE `productos` (
-  `id` int(8) NOT NULL,
+  `id` int(16) NOT NULL,
   `nombre` varchar(20) NOT NULL,
-  `stock` int(5) NOT NULL,
-  `precio_unitario` float(3,2) NOT NULL,
+  `stock` int(3) NOT NULL,
+  `precio_unitario` float(5,2) NOT NULL,
   `categoria` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `stock`, `precio_unitario`, `categoria`) VALUES
+(1, 'mesa ikea', 34, 42.00, 1),
+(2, 'silla oficina', 15, 32.57, 1),
+(3, 'microondas', 30, 79.99, 2),
+(4, 'pc torre', 200, 563.59, 3),
+(5, 'portatil  ALIENWARE', 37, 899.99, 3);
 
 -- --------------------------------------------------------
 
@@ -72,31 +109,15 @@ CREATE TABLE `usuarios` (
   `email` varchar(80) NOT NULL,
   `contrasenya` varchar(100) NOT NULL,
   `confirmacion_contrasenya` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nick`, `email`, `contrasenya`, `confirmacion_contrasenya`) VALUES
-(2, 'admin', 'admin@gmail.com', '$2y$10$.SKYP51iA68uu6sRJ2a4wuC4hUijW2PNjElbE6C/Irk2my682Yuq.', '$2y$10$F3xAuehTJ7uJxTHbBqSgX.B6QoFvB8F8osYNMSQGE3hRY/vIjPv7.'),
-(3, 'user', 'user@gmail.com', '$2y$10$wXivj5XonVP67VkJ8Bxm9.CflTMpEM5nZJPscDGEixB7wHE1xbrSq', '$2y$10$Ne/k98/.xZpqogufE/84DehHj.8jgtAxtxcf.rsh76BWR60ZM0s.6');
-
---
--- Disparadores `usuarios`
---
-DELIMITER $$
-CREATE TRIGGER `before_insert_users` BEFORE INSERT ON `usuarios` FOR EACH ROW BEGIN
-    DECLARE new_id INT;
-    
-    -- Calculate the new numeric value based on the current auto-incremented ID
-    SELECT IFNULL(MAX(id), 0) + 1 INTO new_id FROM usuarios;
-
-    -- Set the new numeric value for the inserted row
-    SET NEW.id = new_id;
-END
-$$
-DELIMITER ;
+(1, 'admin', 'admin@gmail.com', '$2y$10$LY/eXmDpARI1m8pVINH6be4LsZsPVCRKfCjTsihEVvLtaa/oCgAt2', '$2y$10$WEIopQWi3k2hXPanenzCkOtlADc4JY.cBsVxi5B8vzr7IXncXAFNS'),
+(2, 'user', 'user@gmail.com', '$2y$10$KgAeUQtIRlsqLDN2/7Hqx.KScAoiCUEyK4xrmNA.V1bZOkKV1wSfm', '$2y$10$ADQ3EbIh8WY/8l1aB0EbxuRldMUvRl4ykOEYR3SPaA9t.b1R/jEOq');
 
 --
 -- Índices para tablas volcadas
@@ -107,7 +128,8 @@ DELIMITER ;
 --
 ALTER TABLE `carrito`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_producto` (`producto`);
+  ADD KEY `FK_producto` (`producto`),
+  ADD KEY `FK_usuario` (`usuario`);
 
 --
 -- Indices de la tabla `categorias`
@@ -126,17 +148,30 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nick` (`nick`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -146,13 +181,14 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  ADD CONSTRAINT `FK_producto` FOREIGN KEY (`producto`) REFERENCES `productos` (`id`);
+  ADD CONSTRAINT `FK_producto` FOREIGN KEY (`producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_usuario` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD CONSTRAINT `FK_categoria` FOREIGN KEY (`categoria`) REFERENCES `categorias` (`id`);
+  ADD CONSTRAINT `FK_categoria` FOREIGN KEY (`categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -63,8 +63,65 @@ a {
     font-size: 10.5px;
 
 }
-.perfil{
+
+.perfil {
     display: flex;
     flex-direction: column;
     height: max-content;
+}
+
+/*
+especifico del archivo productos_vista.php
+*/
+
+.pantalla-producto {
+    position: absolute;
+    top: 10pc;
+    left: 9pc;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 5pc;
+    width: 100pc;
+}
+
+.caja-producto>form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 18pc;
+    height: 20pc;
+    padding: 1pc;
+    background-color: white;
+    border-radius: 1pc;
+    box-shadow: 5px 5px 10px rgb(67, 67, 82);
+}
+
+.caja-producto>form>input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.ordenar {
+    position: absolute;
+    top: 2pc;
+    left: 30pc;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 15pc;
+}
+
+.ordenar>form>input {
+    font-size: larger;
+    width: 20pc;
+    height: 5pc;
+    background-color: white;
+    border-radius: 1pc;
+}
+.carrito{
+    position: absolute;
+    top: 1pc;
+    right: 1pc;
 }

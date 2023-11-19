@@ -10,18 +10,24 @@ class login_model
         // Crea una instancia del controlador de usuarios.
         $this->controller = new login_controller;
     }
+
+    //inicia sesion
     public function comprobarLogin($nick, $contrasenya)
     {
         $logeado = $this->controller->isUserValid($nick, $contrasenya);
-        if ($logeado==true) {
+        if ($logeado == true) {
+            session_id('' . $nick . '');
             session_start();
-            $_SESSION['nick'] = $nick;
-            $_SESSION['mail'] = $this->controller->getMail($nick);
-            if($nick=="admin"){
-            header("Location: /tienda/views/admin_view.php");
-            }else{
-            header("Location: /tienda/views/home_view.php");
-        }
+            $_SESSION['nick'.session_id()] = $nick;
+            $_SESSION['mail'.session_id()] = $this->controller->getMail($nick);
+            $_SESSION['asc'.session_id()] = false;
+            $_SESSION['desc'.session_id()] = false;
+            session_write_close();
+            if ($nick == "admin") {
+                header("Location: /tienda/views/admin_view.php");
+            } else {
+                header("Location: /tienda/views/home_view.php");
+            }
         } else {
             header("Location: /tienda/views/registro_view.php");
         }

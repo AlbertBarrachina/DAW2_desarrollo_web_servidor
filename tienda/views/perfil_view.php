@@ -3,6 +3,8 @@ session_start();
 set_include_path(get_include_path() . PATH_SEPARATOR . 'C:/xampp/htdocs/tienda/');
 require_once('models/perfil_model.php');
 
+
+
 $modelo = new perfil_model;
 
 if (isset($_POST['volver'])) {
@@ -45,7 +47,7 @@ if (isset($_POST['volver'])) {
                     </td>
                     <td>
                         <?php
-                        echo $_SESSION['nick'];
+                        echo $_SESSION['nick'.session_id()];
                         ?>
                     </td>
                 </tr>
@@ -55,13 +57,13 @@ if (isset($_POST['volver'])) {
                     </td>
                     <td>
                         <?php
-                            echo $_SESSION['mail'];
+                            echo $_SESSION['mail'.session_id()];
                         ?>
                     </td>
                 </tr>
             </table>
                 <?php
-                    echo '<input type="email" placeholder="' . $_SESSION['mail'] . '" name="email" required>';
+                    echo '<input type="email" placeholder="' . $_SESSION['mail'.session_id()] . '" name="email" required>';
                 ?>
                 <br>
             <input type="submit" value="Cambiar correo" name="guardar">
@@ -71,7 +73,7 @@ if (isset($_POST['volver'])) {
             <label for="">Cambiar contraseña</label><br><br>
             <input type="password" placeholder="Contraseña" name="contrasenya" required><br>
             <input type="password" placeholder="Repita contraseña" name="contrasenya2" required><br>
-            <input type="submit" value="guardar cambios" name="guardarContrasenya">
+            <input type="submit" value="Guardar contraseña" name="guardarContrasenya">
             <br><br><br>
         </form>
 

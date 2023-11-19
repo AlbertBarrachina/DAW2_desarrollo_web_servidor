@@ -4,9 +4,10 @@ require_once('db/db.php');
 class perfil_controller
 {
     private $con;
-
+    private $id;
     public function __construct()
     {
+        $this->id = session_id();
         $this->con = new Conectar;
         $this->con = $this->con->conexion();
     }
@@ -18,7 +19,7 @@ class perfil_controller
             $sql = 'UPDATE usuarios SET email = "' . $email . '" WHERE nick = "' . $_SESSION['nick']. '"';
 
             $query = mysqli_query($this->con, $sql);
-            $_SESSION['mail'] = $email;
+            $_SESSION['mail_'.$this->id] = $email;
     }
         //cambia el correo de la cuenta
         public function cambiarContrasenya($contrasenya)
