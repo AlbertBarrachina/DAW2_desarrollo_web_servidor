@@ -12,10 +12,11 @@
     <div>
         <h1>Modificar Pokemon</h1>
 
-        <form action="{{ route('pokemon.update') }}" method="POST">
+        <form action="{{ route('pokemon.update', $pokemon) }}" method="POST">
             @csrf
+            @method('PUT')
             <label for="nombre">Nombre:</label>
-            <input type="text" name="nombre" required>
+            <input type="text" name="nombre" value="{{old('nombre', $pokemon->nombre)}}" required>
             <br>
             <label for="tipo">Tipo:</label>
             <select name="tipo" required>
@@ -39,16 +40,16 @@
             </select>
             <br>
             <label for="tamano">Tamaño:</label>
-            <select name="tamano" required>
+            <select name="tamano" value="{{old('tamano', $pokemon->tamano)}}" required>
                 <option value="Pequeño">Pequeño</option>
                 <option value="Mediano">Mediano</option>
                 <option value="Grande">Grande</option>
             </select>
             <br>
             <label for="peso">Peso:</label>
-            <input type="number" step="0.1" name="peso" required>
+            <input type="number" step="0.1" name="peso" value="{{old('peso', $pokemon->peso)}}" required>
             <br>
-            <button type="submit">Crear Pokemon</button>
+            <button type="submit">actualizar Pokemon</button>
         </form>
     </div>
 </body>

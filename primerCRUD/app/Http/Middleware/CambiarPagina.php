@@ -18,10 +18,10 @@ class CambiarPagina
         if ($request->has('tipo')) {
             $userType = $request->input('tipo');
 
-            if ($userType === 'admin') {
-                return redirect('/admin-page');
-            } elseif ($userType === 'usuario') {
-                return redirect('/usuario-page');
+            if ($userType === 'Admin') {
+                return redirect('/pokemon');
+            } elseif ($userType === 'Usuario') {
+                return redirect('/show');
             }
         }
 

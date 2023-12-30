@@ -42,17 +42,38 @@ class pokemonController extends Controller
         return view('pokemon.show', compact('pokemons'));
     }
 
+    public function showAdmin()
+    {
+        $pokemons = pokemonModel::all();
+
+        return view('pokemon.showAdmin', compact('pokemons'));
+    }
+
     public function edit($id)
     {
-        // Muestra el formulario para editar un pokemon especifico
-        return view('pokemons.edit', compact('pokemons.id'));
+        $pokemon = pokemonModel::findOrFail($id);
+        return view('pokemon.edit', compact('pokemon'));
     }
 
     public function update(Request $request, $id)
-    {
-        return view('pokemons.index');
-        // Actualiza un pokemon en la base de datos
-    }
+{
+    // Valida los datos 
+    $request->validate([
+        'nombre' => 'required',
+        'tipo' => 'required',
+        'tamano' => 'required|in:Pequeño,Mediano,Grande',
+        'peso' => 'required|numeric',
+    ]);
+
+    // obtiene el pokemon de la db
+    $pokemon = pokemonModel::findOrFail($id);
+
+    // actuliza el pokemon
+    $pokemon->update($request->all());
+
+    // vuelve al index
+    return redirect()->route('pokemon.index');
+}
 
     public function destroy($id)
     {
@@ -60,6 +81,7 @@ class pokemonController extends Controller
         $pokemon = pokemonModel::findOrFail($id);
 
         $pokemon->delete();
-        return redirect()->route('pokemon.index')->with('success', 'Pokémon eliminado correctamente');
+        return redirect()->route('pokemon.showAdmin')->with('success', 'Pokémon eliminado correctamente');
     }
+
 }

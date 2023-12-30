@@ -12,19 +12,14 @@
 
     <div class="opciones">
         <div class="div-mostrar">
-            <form action="{{route('pokemon.show')}}" method="GET">
+            <form action="{{route('pokemon.showAdmin')}}" method="GET">
                 <input type="submit" value="Mostrar pokemons">
             </form>
         </div>
         <div class="div-crear">
-            <a href="{{ url('pokemon/create')}}"><button>Crear pokemon</button></a>
-
-        </div>
-        <div class="div-modificar">
-            <a href="{{ url('pokemon/update')}}"><button>Modificar pokemon</button></a>
-        </div>
-        <div class="div-eliminar">
-
+            <form action="{{route('pokemon.create')}}" method="GET">
+                <input type="submit" value="Crear pokemons">
+            </form>
         </div>
     </div>
 </body>

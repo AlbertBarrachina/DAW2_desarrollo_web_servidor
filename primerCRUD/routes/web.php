@@ -15,7 +15,7 @@ use App\Http\Controllers\pokemonController;
 */
 
 Route::get('/', function () {
-    return view('pokemon.index');
+    return view('pokemon.selector');
 });
 
 //damos el acceso al controlador de pokemons
@@ -24,5 +24,8 @@ Route::resource('pokemon', pokemonController::class);
 // Para mostrarlo
 Route::get('/show', [PokemonController::class, 'show'])
     ->name('pokemon.show');
+
+Route::get('/showAdmin', [PokemonController::class, 'showAdmin'])
+    ->name('pokemon.showAdmin'); 
 
 

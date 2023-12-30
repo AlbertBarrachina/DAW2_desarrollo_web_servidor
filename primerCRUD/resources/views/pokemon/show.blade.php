@@ -32,13 +32,6 @@
                     <td>{{ $pokemon->tipo }}</td>
                     <td>{{ $pokemon->tamano }}</td>
                     <td>{{ $pokemon->peso }}</td>
-                    <td>
-                        <form method="post" action="{{route ('pokemon.destroy', $pokemon->id)}}">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Eliminar pokemon</button>
-                        </form>
-                    </td>
                 </tr>
                 @empty
                 <tr>
@@ -47,7 +40,6 @@
                 @endforelse
             </tbody>
         </table>
-        <a href="{{ url('pokemon/index')}}"><button>Volver</button></a>
     </div>
 </body>
 
