@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\tiendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tienda.index');
 });
+
+Route::resource('tienda', tiendaController::class);
+
+
+Route::get('/tienda/login', 'TiendaController@showLogin')->name('tienda.showLogin');
+Route::get('/tienda/register', 'TiendaController@showRegister')->name('tienda.showRegister');
