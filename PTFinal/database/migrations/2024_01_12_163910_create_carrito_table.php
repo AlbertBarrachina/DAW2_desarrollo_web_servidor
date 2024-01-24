@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carrito', function (Blueprint $table) {
             $table->id();
-            $table->string('producto')->unique;
+            $table->string('producto')->references('name')->on('productos')->unique;
             $table->integer('cantidad');
             $table->integer('precio_producto');
             $table->integer('total');

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::resource('tienda', tiendaController::class);
+Route::resource('tienda', TiendaController::class);
 
 Route::get('/', function () {
     return view('tienda.index');
