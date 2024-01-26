@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::resource('tienda', TiendaController::class);
 
 Route::get('/', function () {
     return view('tienda.index');
 });
 
+Route::resource('tienda', TiendaController::class);
 
+Route::get('showLogin', [TiendaController::class, 'showLogin'])->name('tienda.showLogin');
+Route::get('showRegister', [TiendaController::class, 'showRegister'])->name('tienda.showRegister');
+Route::get('storeUsuario', [TiendaController::class, 'storeUsuario'])->name('tienda.storeUsuario');
