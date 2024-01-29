@@ -6,3 +6,13 @@
         <input type="submit" value="Registrate">
     </form>
 </div>
+
+@if($userRol == 'Admin')
+    <form action="{{route('tienda.showAdmin')}}">
+        <button action="submit">Zona admin</button>
+    </form>
+@elseif($userRol == 'Usuario')
+    <p>Howdy Usuario!</p>
+@else
+    <p>Inicia sesion o registrate!</p>
+@endif

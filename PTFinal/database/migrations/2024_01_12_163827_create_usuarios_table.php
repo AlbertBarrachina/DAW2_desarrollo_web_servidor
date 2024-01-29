@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('dni')->unique;
-            $table->date('fecha_nacimineto');
+            $table->date('fecha_nacimiento');
             $table->string('contraseña');
             $table->enum('rol',['Usuario','Admin']);
             $table->timestamps();

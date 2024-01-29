@@ -20,6 +20,13 @@ Route::get('/', function () {
 
 Route::resource('tienda', TiendaController::class);
 
+/* shows*/
 Route::get('showLogin', [TiendaController::class, 'showLogin'])->name('tienda.showLogin');
 Route::get('showRegister', [TiendaController::class, 'showRegister'])->name('tienda.showRegister');
+Route::get('showAdmin', [TiendaController::class, 'showadmin'])->name('tienda.showAdmin');
+
+/* stores */
 Route::get('storeUsuario', [TiendaController::class, 'storeUsuario'])->name('tienda.storeUsuario');
+
+/*otros*/
+Route::get('Login', [TiendaController::class, 'Login'])->name('tienda.Login');

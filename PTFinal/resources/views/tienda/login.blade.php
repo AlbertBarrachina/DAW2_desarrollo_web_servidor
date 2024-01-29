@@ -4,8 +4,9 @@
     </form>
 </div>
 <div>
-    <form action="" method="POST">
-        <input type="text" placeholder="Nick">
+    <form action="{{route('tienda.Login')}}" method="GET">
+        <input type="text" placeholder="Nick" name="nick">
+        <input type="text" placeholder="Contraseña" name="password">
         <input type="submit" value="Iniciar sesion">
     </form>
 </div>
